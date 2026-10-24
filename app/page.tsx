@@ -31,6 +31,13 @@ import {
   NavIcon,
 } from "./icons";
 import { isSupabaseConfigured, supabase } from "../lib/supabase";
+import {
+  clearNeonSession,
+  getNeonSession,
+  isNeonDemo,
+  neonLoadDashboard,
+  neonSignIn,
+} from "../lib/demo-backend";
 import { oxxusVersionLabel } from "../lib/oxxus-version";
 type Score = { bureau: string; score: number };
 type Client = {
@@ -214,20 +221,38 @@ function scoresFor(c: CaseRecord) {
 function Login({
   language,
   onLanguageChange,
+  onSignedIn,
 }: {
   language: Language;
   onLanguageChange: (language: Language) => void;
+  onSignedIn?: (session: Session) => void;
 }) {
   const tr = (es: string, en: string) => (language === "es" ? es : en);
   const [mode, setMode] = useState<"login" | "create">("login"),
-    [email, setEmail] = useState(""),
-    [password, setPassword] = useState(""),
+    [email, setEmail] = useState(
+      isNeonDemo ? "admin@demo.oxxus.local" : "",
+    ),
+    [password, setPassword] = useState(isNeonDemo ? "Demo2026!Oxxus" : ""),
     [message, setMessage] = useState(""),
     [busy, setBusy] = useState(false);
   async function submit(e: FormEvent) {
     e.preventDefault();
     setBusy(true);
     setMessage("");
+    if (isNeonDemo) {
+      const { session, error } = await neonSignIn(email, password);
+      if (session) onSignedIn?.(session);
+      setMessage(
+        error
+          ? tr(
+              "No pudimos iniciar sesión. Revisa el usuario demo del README.",
+              "We could not sign in. Check the demo credentials in the README.",
+            )
+          : tr("Acceso correcto.", "Signed in successfully."),
+      );
+      setBusy(false);
+      return;
+    }
     const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
@@ -244,6 +269,15 @@ function Login({
   }
   async function sendPasswordLink(e: FormEvent) {
     e.preventDefault();
+    if (isNeonDemo) {
+      setMessage(
+        tr(
+          "En la demo Neon no se envían correos. Usa el usuario demo precargado.",
+          "The Neon demo does not send emails. Use the prefilled demo user.",
+        ),
+      );
+      return;
+    }
     setBusy(true);
     setMessage("");
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
@@ -696,11 +730,27 @@ export default function Home() {
       document.documentElement.lang = saved;
     }
   }, []);
+  function signOut() {
+    if (isNeonDemo) {
+      clearNeonSession();
+      setSession(null);
+      setProfile(null);
+      setProfiles([]);
+      setCases([]);
+      return;
+    }
+    void supabase.auth.signOut();
+  }
   useEffect(() => {
     const hash = window.location.hash;
     if (hash.includes("type=recovery") || hash.includes("type=invite")) {
       setRecovery(true);
       if (hash.includes("type=invite")) setForceOnboarding(true);
+    }
+    if (isNeonDemo) {
+      setSession(getNeonSession());
+      setAuthReady(true);
+      return;
     }
     if (!isSupabaseConfigured) {
       setAuthReady(true);
@@ -728,6 +778,23 @@ export default function Home() {
     if (!session) return;
     setLoading(true);
     setError("");
+    if (isNeonDemo) {
+      const result = await neonLoadDashboard();
+      if (result.error) {
+        setError(
+          "No pudimos cargar los casos. Cierra la sesión y vuelve a entrar.",
+        );
+      } else {
+        setCases(result.cases as CaseRecord[]);
+      }
+      setProfiles(result.profiles);
+      const nextProfile =
+        result.profiles.find((x) => x.id === session.user.id) ?? null;
+      setProfile(nextProfile);
+      setOnboarding(null);
+      setLoading(false);
+      return;
+    }
     const [cr, pr] = await Promise.all([
       supabase.rpc("get_dashboard_cases"),
       supabase
@@ -793,13 +860,13 @@ export default function Home() {
     );
   if (!authReady)
     return <main className="loading-screen">Preparando tu acceso…</main>;
-  if (!isSupabaseConfigured)
+  if (!isNeonDemo && !isSupabaseConfigured)
     return (
       <main className="loading-screen">
         La conexión segura todavía no está configurada.
       </main>
     );
-  if (recovery)
+  if (recovery && !isNeonDemo)
     return (
       <PasswordSetup
         language={language}
@@ -816,7 +883,11 @@ export default function Home() {
     );
   if (!session)
     return (
-      <Login language={language} onLanguageChange={changeLanguage} />
+      <Login
+        language={language}
+        onLanguageChange={changeLanguage}
+        onSignedIn={setSession}
+      />
     );
   function view() {
     if (isClient && needsOnboarding) {
@@ -905,6 +976,14 @@ export default function Home() {
     if (active === "Informe diario")
       return isClient ? (
         <EmptyModule title="Acceso restringido" text="La bitacora de trabajo esta disponible para el equipo OXXUS." />
+      ) : isNeonDemo ? (
+        <EmptyModule
+          title={tr("Demo portafolio", "Portfolio demo")}
+          text={tr(
+            "El informe diario usa Storage/RPC de Supabase y no está activo en la demo Neon. El Dashboard y los casos sí usan Neon.",
+            "The daily report uses Supabase Storage/RPC and is inactive in the Neon demo. Dashboard and cases use Neon.",
+          )}
+        />
       ) : (
         <WorkdayReport viewer={profile!} />
       );
@@ -1036,7 +1115,7 @@ export default function Home() {
       data-nav-count={mobileNavCount}
       data-nav-mode={mobileNavCount > 6 ? "scroll" : "fit"}
     >
-      {!isClient && <WorkdayTracker section={active} />}
+      {!isClient && !isNeonDemo && <WorkdayTracker section={active} />}
       <aside className="sidebar">
         <div className="brand logo-brand">
           <img
@@ -1072,7 +1151,7 @@ export default function Home() {
             className="nav-item mobile-nav-logout"
             aria-label={tr("Cerrar sesión", "Log out")}
             title={tr("Cerrar sesión", "Log out")}
-            onClick={() => supabase.auth.signOut()}
+            onClick={signOut}
           >
             <span className="nav-ico">
               <IconLogout size={16} />
@@ -1094,7 +1173,7 @@ export default function Home() {
           <button
             aria-label={tr("Cerrar sesión", "Log out")}
             title={tr("Cerrar sesión", "Log out")}
-            onClick={() => supabase.auth.signOut()}
+            onClick={signOut}
           >
             <IconLogout size={16} />
           </button>
@@ -1159,7 +1238,9 @@ export default function Home() {
             <ThemeToggle />
             <span className="backend online">
               <i />
-              {tr("Datos en vivo", "Live data")}
+              {isNeonDemo
+                ? tr("Demo Neon · datos ficticios", "Neon demo · sample data")
+                : tr("Datos en vivo", "Live data")}
             </span>
             <button
               className="icon-button desktop-refresh"

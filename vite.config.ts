@@ -43,8 +43,13 @@ export default defineConfig(async () => {
   // Wrangler snapshots its log path while the Cloudflare plugin is imported.
   const { cloudflare } = await import("@cloudflare/vite-plugin");
 
+  const demoBackend = process.env.NEXT_PUBLIC_DEMO_BACKEND || "neon";
+
   return {
     envPrefix: ["VITE_", "NEXT_PUBLIC_"],
+    define: {
+      "process.env.NEXT_PUBLIC_DEMO_BACKEND": JSON.stringify(demoBackend),
+    },
     server: isCodexSeatbeltSandbox
       ? { watch: { useFsEvents: false, usePolling: true } }
       : undefined,

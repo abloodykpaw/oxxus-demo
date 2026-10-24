@@ -6,7 +6,7 @@
     "node": ">=22.13.0"
   },
   "scripts": {
-    "dev": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext dev",
+    "dev": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext dev -H 127.0.0.1",
     "build": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext build",
     "start": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext start",
     "test": "npm run build && node --test tests/rendered-html.test.mjs",
@@ -24,6 +24,7 @@
     "version:commercial": "node scripts/set-commercial-flag.mjs"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.2.0",
     "@supabase/supabase-js": "^2.112.3",
     "drizzle-orm": "0.45.2",
     "react": "19.2.6",
