@@ -1,5 +1,5 @@
 /** OXXUS release id: Comercial.OXXUS.Edjouner.Build — synced from VERSION by bump script. */
-export const OXXUS_VERSION = "0.0.1.29";
+export const OXXUS_VERSION = "0.0.1.30";
 
 export type OxxusVersionParts = {
   commercial: 0 | 1;
