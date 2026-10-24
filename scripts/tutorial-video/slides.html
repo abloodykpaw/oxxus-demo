@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>OXXUS Tutorial</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700;800&display=swap");
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #020617; font-family: "DM Sans", system-ui, sans-serif; }
+    .slide {
+      width: 720px;
+      height: 1280px;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(900px 520px at 50% -8%, #1a4a8a55, transparent 58%),
+        radial-gradient(640px 420px at 100% 100%, #0f346655, transparent 55%),
+        linear-gradient(180deg, #071428 0%, #0a1e3d 42%, #061224 100%);
+      color: #fff;
+      padding: 44px 36px 52px;
+      display: flex;
+      flex-direction: column;
+    }
+    .top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+    }
+    /* Same as site: transparent logo, no white plate */
+    .logo-brand {
+      display: grid;
+      place-items: start;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      padding: 0;
+    }
+    .logo-brand img {
+      display: block;
+      height: 88px;
+      width: auto;
+      background: transparent;
+      border-radius: 0;
+      padding: 0;
+      box-shadow: none;
+      filter: none;
+      object-fit: contain;
+    }
+    .slide.brand {
+      align-items: center;
+      justify-content: center;
+      padding: 64px 48px;
+      text-align: center;
+    }
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      gap: 28px;
+    }
+    .brand-mark img {
+      width: min(420px, 78vw);
+      height: auto;
+      filter: drop-shadow(0 18px 40px #00000066);
+    }
+    .brand-line {
+      width: 72px;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #1770e8, #5b9bff);
+      margin: 0 auto;
+    }
+    .brand-kicker {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      color: #9dc5ff;
+      text-transform: uppercase;
+    }
+    .brand-title {
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1.25;
+      color: #fff;
+      max-width: 480px;
+    }
+    .badge {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: #9dc5ff;
+    }
+    .step-counter {
+      font-size: 15px;
+      font-weight: 700;
+      color: #d7e8ff;
+      letter-spacing: 0.06em;
+    }
+    h1 {
+      font-size: 42px;
+      line-height: 1.08;
+      font-weight: 800;
+      margin-bottom: 10px;
+      max-width: 620px;
+    }
+    .subtitle {
+      font-size: 22px;
+      line-height: 1.35;
+      color: #7eb4ff;
+      font-weight: 600;
+      margin-bottom: 28px;
+    }
+    .phone {
+      margin: 0 auto;
+      width: 100%;
+      max-width: 520px;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .phone-inner {
+      width: 100%;
+      background: linear-gradient(180deg, #f8fbff 0%, #eef4fc 100%);
+      border-radius: 28px;
+      padding: 28px 24px;
+      box-shadow: 0 24px 60px #00000055, inset 0 0 0 1px #ffffff88;
+      color: #0b1f3d;
+    }
+    .phone-inner h2 {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: #0b2a50;
+    }
+    .phone-inner p {
+      font-size: 14px;
+      line-height: 1.45;
+      color: #4a6280;
+      margin-bottom: 16px;
+    }
+    .url-bar {
+      background: #e8f0fa;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: #35567a;
+      margin-bottom: 18px;
+      font-weight: 600;
+    }
+    .cta {
+      display: inline-block;
+      background: linear-gradient(120deg, #1770e8, #0d5fd0);
+      color: #fff;
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      padding: 14px 18px;
+      border-radius: 12px;
+      text-align: center;
+      width: 100%;
+    }
+    .bureau-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .bureau {
+      background: #fff;
+      border: 2px solid #c8daf0;
+      border-radius: 14px;
+      padding: 14px 8px;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: #0b2a50;
+    }
+    .bureau.on { border-color: #1770e8; background: #edf5ff; box-shadow: 0 0 0 3px #1770e822; }
+    .option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      border: 1px solid #d5e2f2;
+      border-radius: 999px;
+      padding: 12px 14px;
+      margin-bottom: 8px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .option .dot {
+      width: 16px; height: 16px; border-radius: 50%;
+      border: 2px solid #1770e8;
+      flex: 0 0 auto;
+    }
+    .file-list { display: grid; gap: 10px; }
+    .file {
+      display: flex; align-items: center; gap: 12px;
+      background: #fff; border: 1px solid #d5e2f2; border-radius: 14px; padding: 14px;
+    }
+    .file-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      display: grid; place-items: center; font-size: 11px; font-weight: 800; color: #fff;
+    }
+    .file-icon.exp { background: #1770e8; }
+    .file-icon.eqf { background: #e53935; }
+    .file-icon.trn { background: #0d47a1; }
+    .file small { display: block; color: #1770e8; font-weight: 700; margin-top: 2px; }
+    .upload-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .upload-card {
+      background: #fff;
+      border: 2px dashed #9bb8dc;
+      border-radius: 16px;
+      padding: 16px 8px;
+      text-align: center;
+      min-height: 120px;
+    }
+    .upload-card.done { border-style: solid; border-color: #2ecf9a; background: #edfff8; }
+    .upload-card img { height: 22px; margin-bottom: 8px; }
+    .upload-card strong { display: block; font-size: 11px; color: #0b2a50; }
+    .upload-card span { display: block; font-size: 10px; color: #2ecf9a; font-weight: 700; margin-top: 6px; }
+    .pill {
+      display: inline-block;
+      background: #0c2f5b;
+      color: #9dc5ff;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      padding: 8px 12px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+    .analyze-btn {
+      margin-top: 16px;
+      background: linear-gradient(120deg, #1770e8, #0d5fd0);
+      color: #fff;
+      font-weight: 800;
+      font-size: 15px;
+      padding: 18px;
+      border-radius: 14px;
+      text-align: center;
+      box-shadow: 0 12px 28px #1770e855;
+    }
+    .hero-icon {
+      width: 120px; height: 120px; border-radius: 50%;
+      margin: 24px auto;
+      display: grid; place-items: center;
+      background: #2ecf9a22;
+      border: 3px solid #2ecf9a;
+      color: #2ecf9a;
+      font-size: 54px;
+      font-weight: 800;
+    }
+    .status-chip {
+      display: inline-block;
+      background: #0c2f5b;
+      border: 1px solid #2ecf9a55;
+      color: #fff;
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      padding: 12px 18px;
+      border-radius: 12px;
+      margin: 0 auto;
+    }
+    .footer {
+      margin-top: auto;
+      background: #0a1a33cc;
+      border: 1px solid #2a5088;
+      border-radius: 18px;
+      padding: 20px 22px;
+      font-size: 16px;
+      line-height: 1.5;
+      color: #d7e8ff;
+      font-weight: 500;
+    }
+    .center-text { text-align: center; }
+    .intro h1 { font-size: 46px; }
+    .lock-svg { width: 56px; height: 56px; }
+    .lang-block-es, .lang-block-en { display: none !important; }
+    html[lang="es"] .lang-block-es { display: block !important; }
+    html[lang="en"] .lang-block-en { display: block !important; }
+    html[lang="es"] .status-chip.lang-block-es,
+    html[lang="en"] .status-chip.lang-block-en { display: inline-block !important; }
+    html[lang="es"] .pill.lang-block-es,
+    html[lang="en"] .pill.lang-block-en { display: inline-block !important; }
+    .lang-inline-es, .lang-inline-en { display: none; }
+    html[lang="es"] .lang-inline-es { display: inline; }
+    html[lang="en"] .lang-inline-en { display: inline; }
+  </style>
+</head>
+<body>
+
+<section class="slide brand" data-slide="brand">
+  <div class="brand-mark">
+    <img src="../../public/oxxus-logo-dark-v2.png" alt="OXXUS Credit Solutions" />
+    <div class="brand-line"></div>
+    <p class="brand-kicker lang-block-es">Video tutorial</p>
+    <p class="brand-kicker lang-block-en">Video tutorial</p>
+    <p class="brand-title lang-block-es">Cómo obtener y enviar tus reportes de crédito</p>
+    <p class="brand-title lang-block-en">How to get and send your credit reports</p>
+  </div>
+</section>
+
+<section class="slide intro" data-slide="intro">
+  <div class="top">
+    <div class="logo-brand"><img src="../../public/oxxus-logo-dark-v2.png" alt="OXXUS" /></div>
+    <span class="badge"><span class="lang-inline-es">GUÍA</span><span class="lang-inline-en">GUIDE</span></span>
+  </div>
+  <h1 class="lang-block-es">Antes de comenzar</h1>
+  <h1 class="lang-block-en">Before you start</h1>
+  <p class="subtitle lang-block-es">Usa una red privada y segura</p>
+  <p class="subtitle lang-block-en">Use a private and secure network</p>
+  <div class="center-text">
+    <div class="hero-icon">
+      <svg class="lock-svg" viewBox="0 0 24 24" fill="none" stroke="#2ecf9a" stroke-width="2">
+        <rect x="5" y="11" width="14" height="10" rx="2"/>
+        <path d="M8 11V8a4 4 0 0 1 8 0v3"/>
+      </svg>
+    </div>
+    <div class="status-chip lang-block-es">OXXUS NUNCA PIDE TUS CREDENCIALES</div>
+    <div class="status-chip lang-block-en">OXXUS NEVER ASKS FOR YOUR CREDENTIALS</div>
+  </div>
+  <div class="footer lang-block-es">
+    Descarga tú mismo los reportes en AnnualCreditReport.com y súbelos solo en PDF. No compartas contraseñas ni respuestas de identidad con nadie.
+  </div>
+  <div class="footer lang-block-en">
+    Download the reports yourself at AnnualCreditReport.com and upload them as PDF only. Never share passwords or identity answers with anyone.
+  </div>
+</section>
+
+<section class="slide" data-slide="1">
+  <div class="top">
+    <div class="logo-brand"><img src="../../public/oxxus-logo-dark-v2.png" alt="OXXUS" /></div>
+    <span class="step-counter">1/6</span>
+  </div>
+  <h1 class="lang-block-es">1. Abre el sitio oficial</h1>
+  <h1 class="lang-block-en">1. Open the official site</h1>
+  <p class="subtitle">AnnualCreditReport.com</p>
+  <div class="phone">
+    <div class="phone-inner lang-block-es">
+      <div class="url-bar">annualcreditreport.com</div>
+      <h2>Reportes de crédito GRATIS</h2>
+      <p>El único sitio oficial para tus reportes de crédito gratuitos</p>
+      <div class="cta">SOLICITAR MIS REPORTES</div>
+      <p style="margin-top:14px;text-align:center;font-size:12px;">Experian · Equifax · TransUnion</p>
+    </div>
+    <div class="phone-inner lang-block-en">
+      <div class="url-bar">annualcreditreport.com</div>
+      <h2>FREE Credit Reports</h2>
+      <p>The only official site for your free credit reports</p>
+      <div class="cta">REQUEST YOUR REPORTS</div>
+      <p style="margin-top:14px;text-align:center;font-size:12px;">Experian · Equifax · TransUnion</p>
+    </div>
+  </div>
+  <div class="footer lang-block-es">
+    Usa el enlace de OXXUS o escribe AnnualCreditReport punto com. Confirma que sea el sitio oficial antes de continuar.
+  </div>
+  <div class="footer lang-block-en">
+    Use the OXXUS link or type AnnualCreditReport.com. Confirm it is the official site before you continue.
+  </div>
+</section>
+
+<section class="slide" data-slide="2">
+  <div class="top">
+    <div class="logo-brand"><img src="../../public/oxxus-logo-dark-v2.png" alt="OXXUS" /></div>
+    <span class="step-counter">2/6</span>
+  </div>
+  <h1 class="lang-block-es">2. Selecciona los tres burós</h1>
+  <h1 class="lang-block-en">2. Select all three bureaus</h1>
+  <p class="subtitle">Experian · Equifax · TransUnion</p>
+  <div class="phone">
+    <div class="phone-inner">
+      <h2 class="lang-block-es">Elige tus reportes</h2>
+      <h2 class="lang-block-en">Choose your reports</h2>
+      <p class="lang-block-es">Marca los tres burós para solicitarlos en una sola visita.</p>
+      <p class="lang-block-en">Select all three bureaus to request them in one visit.</p>
+      <div class="bureau-row">
+        <div class="bureau on">Experian<br><small style="color:#1770e8;">✓</small></div>
+        <div class="bureau on">Equifax<br><small style="color:#1770e8;">✓</small></div>
+        <div class="bureau on">TransUnion<br><small style="color:#1770e8;">✓</small></div>
+      </div>
+      <div class="cta" style="margin-top:18px;"><span class="lang-inline-es">CONTINUAR</span><span class="lang-inline-en">CONTINUE</span></div>
+    </div>
+  </div>
+  <div class="footer lang-block-es">
+    Cada buró entrega su reporte por separado. Selecciona los tres antes de avanzar.
+  </div>
+  <div class="footer lang-block-en">
+    Each bureau delivers its own report. Select all three before you continue.
+  </div>
+</section>
+
+<section class="slide" data-slide="3">
+  <div class="top">
+    <div class="logo-brand"><img src="../../public/oxxus-logo-dark-v2.png" alt="OXXUS" /></div>
+    <span class="step-counter">3/6</span>
+  </div>
+  <h1 class="lang-block-es">3. Verifica tu identidad</h1>
+  <h1 class="lang-block-en">3. Verify your identity</h1>
+  <p class="subtitle lang-block-es">Responde solo en el sitio del buró</p>
+  <p class="subtitle lang-block-en">Answer only on the bureau website</p>
+  <div class="phone">
+    <div class="phone-inner">
+      <h2 class="lang-block-es">Verifica tu identidad</h2>
+      <h2 class="lang-block-en">Verify your identity</h2>
+      <p class="lang-block-es">¿Cuál de estas direcciones reconoces?</p>
+      <p class="lang-block-en">Which of these addresses do you recognize?</p>
+      <div class="option"><span class="dot"></span> <span class="lang-inline-es">Opción A</span><span class="lang-inline-en">Option A</span></div>
+      <div class="option"><span class="dot"></span> <span class="lang-inline-es">Opción B</span><span class="lang-inline-en">Option B</span></div>
+      <div class="option"><span class="dot"></span> <span class="lang-inline-es">Ninguna de estas</span><span class="lang-inline-en">None of these</span></div>
+      <div class="cta" style="width:auto;display:inline-block;margin-top:8px;"><span class="lang-inline-es">VERIFICAR</span><span class="lang-inline-en">VERIFY</span></div>
+    </div>
+  </div>
+  <div class="footer lang-block-es">
+    Responde directamente en AnnualCreditReport.com. Si no puedes verificar, sigue las instrucciones alternativas del sitio.
+  </div>
+  <div class="footer lang-block-en">
+    Answer directly on AnnualCreditReport.com. If you cannot verify, follow the site’s alternative instructions.
+  </div>
+</section>
+
+<section class="slide" data-slide="4">
+  <div class="top">
+    <div class="logo-brand"><img src="../../public/oxxus-logo-dark-v2.png" alt="OXXUS" /></div>
+    <span class="step-counter">4/6</span>
+  </div>
+  <h1 class="lang-block-es">4. Descarga cada PDF</h1>
+  <h1 class="lang-block-en">4. Download each PDF</h1>
+  <p class="subtitle lang-block-es">Guarda los archivos antes de salir</p>
+  <p class="subtitle lang-block-en">Save the files before you leave</p>
+  <div class="phone">
+    <div class="phone-inner">
+      <span class="pill lang-block-es">SOLO PDF</span>
+      <span class="pill lang-block-en">PDF ONLY</span>
+      <h2 class="lang-block-es">Tus reportes</h2>
+      <h2 class="lang-block-en">Your reports</h2>
+      <div class="file-list">
+        <div class="file"><div class="file-icon exp">PDF</div><div><strong>Experian.pdf</strong><small class="lang-block-es">Descargar</small><small class="lang-block-en">Download</small></div></div>
+        <div class="file"><div class="file-icon eqf">PDF</div><div><strong>Equifax.pdf</strong><small class="lang-block-es">Descargar</small><small class="lang-block-en">Download</small></div></div>
+        <div class="file"><div class="file-icon trn">PDF</div><div><strong>TransUnion.pdf</strong><small class="lang-block-es">Descargar</small><small class="lang-block-en">Download</small></div></div>
+      </div>
+      <p style="margin-top:12px;font-size:12px;" class="lang-block-es">3 archivos PDF separados</p>
+      <p style="margin-top:12px;font-size:12px;" class="lang-block-en">3 separate PDF files</p>
+    </div>
+  </div>
+  <div class="footer lang-block-es">
+    Descarga o guarda cada reporte en PDF antes de pasar al siguiente. OXXUS solo acepta PDF en la carga inicial.
+  </div>
+  <div class="footer lang-block-en">
+    Download or save each report as a PDF before moving on. OXXUS only accepts PDF for the initial upload.
+  </div>
+</section>
+
+<section class="slide" data-slide="5">
+  <div class="top">
+    <div class="logo-brand"><img src="../../public/oxxus-logo-dark-v2.png" alt="OXXUS" /></div>
+    <span class="step-counter">5/6</span>
+  </div>
+  <h1 class="lang-block-es">5. Sube los PDF en OXXUS</h1>
+  <h1 class="lang-block-en">5. Upload the PDFs in OXXUS</h1>
+  <p class="subtitle lang-block-es">Un archivo por buró o reporte completo</p>
+  <p class="subtitle lang-block-en">One file per bureau or a complete report</p>
+  <div class="phone">
+    <div class="phone-inner">
+      <span class="pill lang-block-es">ANÁLISIS DE REPORTE · SOLO PDF</span>
+      <span class="pill lang-block-en">REPORT ANALYSIS · PDF ONLY</span>
+      <h2 class="lang-block-es">Sube los PDF de los 3 burós</h2>
+      <h2 class="lang-block-en">Upload PDFs from all 3 bureaus</h2>
+      <div class="upload-grid">
+        <div class="upload-card done"><img src="../../public/experian-logo-horizontal.png" alt="" /><strong>Experian</strong><span class="lang-block-es">✓ PDF listo</span><span class="lang-block-en">✓ PDF ready</span></div>
+        <div class="upload-card done"><img src="../../public/equifax-logo.png" alt="" /><strong>Equifax</strong><span class="lang-block-es">✓ PDF listo</span><span class="lang-block-en">✓ PDF ready</span></div>
+        <div class="upload-card done"><img src="../../public/transunion-logo.png" alt="" /><strong>TransUnion</strong><span class="lang-block-es">✓ PDF listo</span><span class="lang-block-en">✓ PDF ready</span></div>
+      </div>
+      <p style="margin-top:12px;font-size:12px;text-align:center;" class="lang-block-es">3 de 3 listos</p>
+      <p style="margin-top:12px;font-size:12px;text-align:center;" class="lang-block-en">3 of 3 ready</p>
+    </div>
+  </div>
+  <div class="footer lang-block-es">
+    Presiona el logo de cada buró y selecciona su PDF. También puedes subir un reporte completo si ya lo tienes.
+  </div>
+  <div class="footer lang-block-en">
+    Tap each bureau logo and select its PDF. You can also upload a complete report if you already have one.
+  </div>
+</section>
+
+<section class="slide success" data-slide="6">
+  <div class="top">
+    <div class="logo-brand"><img src="../../public/oxxus-logo-dark-v2.png" alt="OXXUS" /></div>
+    <span class="step-counter">6/6</span>
+  </div>
+  <h1 class="lang-block-es">6. Analiza mis documentos</h1>
+  <h1 class="lang-block-en">6. Analyze my documents</h1>
+  <p class="subtitle lang-block-es">Envía todo al Asistente OXXUS</p>
+  <p class="subtitle lang-block-en">Send everything to OXXUS Assist</p>
+  <div class="center-text">
+    <div class="hero-icon">✓</div>
+    <div class="status-chip lang-block-es">DOCUMENTOS EN COLA DE ANÁLISIS</div>
+    <div class="status-chip lang-block-en">DOCUMENTS IN ANALYSIS QUEUE</div>
+    <div class="phone" style="margin-top:20px;">
+      <div class="phone-inner" style="padding:20px;">
+        <div class="analyze-btn lang-block-es">Analiza mis documentos</div>
+        <div class="analyze-btn lang-block-en">Analyze my documents</div>
+        <p style="margin-top:12px;text-align:center;font-size:12px;" class="lang-block-es">Asistente OXXUS · Revisión del equipo</p>
+        <p style="margin-top:12px;text-align:center;font-size:12px;" class="lang-block-en">OXXUS Assist · Team review</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer lang-block-es">
+    Cuando los PDF estén listos, pulsa Analiza mis documentos. El Asistente OXXUS recibirá tus archivos para clasificación y plan.
+  </div>
+  <div class="footer lang-block-en">
+    When the PDFs are ready, tap Analyze my documents. OXXUS Assist will receive your files for classification and planning.
+  </div>
+</section>
+
+</body>
+</html>

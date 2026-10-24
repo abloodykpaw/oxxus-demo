@@ -1,0 +1,349 @@
+/* Trust Desk · Usuarios y roles */
+
+.invite-grid {
+  display: grid;
+  grid-template-columns: minmax(340px, 0.9fr) minmax(420px, 1.1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.invite-card {
+  margin: 0;
+}
+
+.permission-note {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: color-mix(in srgb, var(--blue) 8%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--blue) 22%, var(--line));
+  border-radius: 11px;
+  padding: 14px;
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.permission-note b {
+  color: var(--blue);
+  font-size: 13px;
+}
+
+.invite-history {
+  padding: 22px;
+}
+
+.invitation-list {
+  display: grid;
+}
+
+.invitation-list article {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr) auto auto;
+  gap: 12px;
+  align-items: center;
+  padding: 14px 2px;
+  border-bottom: 1px solid var(--line);
+}
+
+.invitation-list article:last-child {
+  border-bottom: 0;
+}
+
+.invitation-list article > div {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.invitation-list b {
+  font-size: 13px;
+  color: var(--ink);
+}
+
+.invitation-list small {
+  font-size: 12px;
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.invitation-list em {
+  font-style: normal;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--blue);
+  background: color-mix(in srgb, var(--blue) 12%, var(--surface));
+  border-radius: 999px;
+  padding: 7px 10px;
+}
+
+.invitation-list i {
+  font-style: normal;
+  font-size: 11px;
+  font-weight: 700;
+  color: #c47a05;
+  background: #f59e0b18;
+  border-radius: 999px;
+  padding: 7px 10px;
+}
+
+.empty-invites {
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+  padding: 55px 15px;
+}
+
+.invite-delivery-actions {
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.invite-delivery-actions button {
+  min-width: 150px;
+}
+
+.delivery-selector {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 16px 0 18px;
+  padding: 5px;
+  border-radius: 11px;
+  background: var(--surface-2);
+}
+
+.delivery-selector button {
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 11px 10px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.delivery-selector button.active {
+  border-color: color-mix(in srgb, var(--blue) 25%, var(--line));
+  background: var(--surface);
+  color: var(--blue);
+  box-shadow: 0 4px 12px #0c274612;
+}
+
+.share-invite-result {
+  display: grid;
+  gap: 6px;
+  padding: 18px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--green) 10%, var(--surface));
+  color: var(--green);
+}
+
+.share-invite-result strong { font-size: 13px; }
+.share-invite-result small { font-size: 10px; }
+
+.share-link-preview {
+  margin-top: 8px;
+  padding: 11px 12px;
+  border: 1px solid color-mix(in srgb, var(--green) 25%, var(--line));
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.share-link-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.share-link-actions button {
+  flex: 1;
+  min-width: 150px;
+}
+
+.admin-message {
+  background: color-mix(in srgb, var(--green) 12%, var(--surface));
+  color: var(--green);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+
+.user-directory,
+.assignment-manager {
+  padding: 22px;
+  margin-top: 18px;
+}
+
+.panel-heading > span {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--blue);
+  background: color-mix(in srgb, var(--blue) 12%, var(--surface));
+  border-radius: 999px;
+  padding: 7px 10px;
+}
+
+.admin-table,
+.assignment-list {
+  display: grid;
+}
+
+.admin-table article {
+  display: grid;
+  grid-template-columns: 38px 1fr 180px 100px;
+  gap: 12px;
+  align-items: center;
+  border-top: 1px solid var(--line);
+  padding: 12px 2px;
+}
+
+.admin-table article > div:nth-child(2),
+.assignment-list article > div {
+  display: grid;
+  gap: 4px;
+}
+
+.admin-table b,
+.assignment-list b {
+  font-size: 13px;
+  color: var(--ink);
+}
+
+.admin-table small,
+.assignment-list small {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.admin-table select,
+.assignment-list select {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink);
+  padding: 10px;
+  font-size: 12px;
+  font-family: inherit;
+}
+
+.admin-table em {
+  font-style: normal;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 7px 10px;
+}
+
+.admin-table em.confirmed {
+  background: color-mix(in srgb, var(--green) 14%, var(--surface));
+  color: var(--green);
+}
+
+.admin-table em.pending {
+  background: #f59e0b18;
+  color: #c47a05;
+}
+
+.assignment-list article {
+  display: grid;
+  grid-template-columns: 1fr minmax(240px, 0.7fr);
+  gap: 16px;
+  align-items: center;
+  border-top: 1px solid var(--line);
+  padding: 13px 2px;
+}
+
+.assignment-list label {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  align-items: center;
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 650;
+}
+
+@media (max-width: 980px) {
+  .invite-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .admin-table article {
+    grid-template-columns: 36px 1fr;
+  }
+
+  .admin-table select,
+  .admin-table em {
+    grid-column: 2;
+  }
+
+  .assignment-list article {
+    grid-template-columns: 1fr;
+  }
+
+  .assignment-list label {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+}
+
+@media (max-width: 600px) {
+  .delivery-selector {
+    grid-template-columns: 1fr;
+  }
+  .invitation-list article {
+    grid-template-columns: 36px 1fr;
+  }
+
+  .invitation-list em,
+  .invitation-list i {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .invite-card,
+  .invite-history {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 600px) {
+  .invite-actions .primary,
+  .invite-actions .secondary,
+  .admin-actions button {
+    min-height: 44px;
+    width: 100%;
+  }
+}
+
+@media (min-width: 1600px) {
+  .invite-layout {
+    gap: 24px;
+  }
+
+  .invite-form input,
+  .invite-form select,
+  .admin-table select {
+    min-height: 48px;
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1920px) {
+  .invite-card,
+  .admin-card {
+    border-radius: 18px;
+    padding: 28px;
+  }
+}

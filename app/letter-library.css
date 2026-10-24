@@ -1,0 +1,259 @@
+/* Trust Desk · Documentos / biblioteca */
+
+.letter-library {
+  position: relative;
+}
+
+.library-note {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: #fff8e8;
+  border: 1px solid #f0dfb7;
+  color: #68501d;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 14px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.library-note b {
+  white-space: nowrap;
+}
+
+.library-panel {
+  padding: 18px;
+}
+
+.library-toolbar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 17px;
+}
+
+.library-toolbar label {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  padding: 0 14px;
+  color: var(--muted);
+  background: var(--surface-2);
+}
+
+.library-toolbar input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  padding: 12px 0;
+  font-size: 13px;
+  background: transparent;
+  color: var(--ink);
+  font-family: inherit;
+}
+
+.library-toolbar select {
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: var(--surface);
+  padding: 0 14px;
+  font-size: 13px;
+  color: var(--ink);
+  font-family: inherit;
+  min-width: 180px;
+}
+
+.template-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.template-grid article {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  gap: 6px 10px;
+  align-items: start;
+  background: var(--surface);
+}
+
+.template-grid article > span {
+  grid-row: 1 / 5;
+  width: 36px;
+  height: 42px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--blue) 12%, var(--surface));
+  color: var(--blue);
+  display: grid;
+  place-items: center;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.template-grid small {
+  font-size: 10px;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+}
+
+.template-grid h3 {
+  font-size: 14px;
+  margin: 1px 0;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.template-grid p {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.template-grid article > div {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.template-grid button {
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  color: var(--ink);
+  border-radius: 9px;
+  padding: 8px 11px;
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.template-grid button.download {
+  background: var(--blue);
+  border-color: transparent;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.template-overlay {
+  position: fixed;
+  inset: 0;
+  background: #061a3578;
+  backdrop-filter: blur(5px);
+  z-index: 150;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+.template-overlay > article {
+  background: var(--bg);
+  width: min(760px, 96vw);
+  max-height: 92vh;
+  overflow: auto;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+}
+
+.template-overlay header {
+  position: sticky;
+  top: 0;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+  padding: 18px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.template-overlay header small {
+  color: var(--blue);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.template-overlay header h3 {
+  margin: 4px 0 0;
+  color: var(--ink);
+}
+
+.template-overlay header button {
+  border: 0;
+  background: var(--surface-2);
+  color: var(--ink);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.template-paper {
+  background: #fff;
+  color: #111;
+  width: min(620px, calc(100% - 30px));
+  margin: 20px auto;
+  padding: 48px;
+  box-shadow: 0 8px 28px #15345315;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.template-paper h1 {
+  font-size: 16px;
+}
+
+.template-overlay footer {
+  padding: 0 20px 20px;
+  text-align: center;
+}
+
+.template-overlay footer button {
+  border: 0;
+  border-radius: 10px;
+  background: var(--blue);
+  color: #fff;
+  padding: 11px 18px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+@media (max-width: 900px) {
+  .template-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .library-note,
+  .library-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .template-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .template-paper {
+    padding: 25px;
+  }
+
+  .library-toolbar select {
+    padding: 12px;
+  }
+}
+

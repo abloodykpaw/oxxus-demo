@@ -1,0 +1,74 @@
+{
+  "dateIso": "2026-09-07",
+  "title": "INFORME DIARIO DE DESARROLLO",
+  "subtitle": "OXXUS Credit Solutions · 2026-09-07",
+  "audience": "Direccion OXXUS",
+  "head": "ad5fd1c",
+  "heroTag": "Resumen ejecutivo",
+  "heroTitle": "Fase 1: Actualizar credito (guia + score)",
+  "heroBody": "Se entrego un flujo guiado para que el cliente actualice score o reporte PDF desde Credit Karma, IdentityIQ o AnnualCreditReport.com, sin pedir ni guardar contrasenas de terceros. Codigo en main, version 0.0.1.27. Soft-pull automatico queda como Fase 2 comercial.",
+  "summaryRows": [
+    ["Actualizar credito", "CTA en home y portal cliente + seccion #actualizar-credito", "En main"],
+    ["Fuentes CK / IIQ", "Guia abrir sitio + captura + confirmar score", "En main"],
+    ["AnnualCreditReport", "Guia PDF oficial FCRA + cola de analisis", "En main"],
+    ["Privacidad", "Copy explicito: OXXUS no pide credenciales", "En main"],
+    ["i18n", "Textos ES/EN en fuentes, pasos y CTAs", "En main"],
+    ["Version", "Auto-bump Action a 0.0.1.27", "En main"],
+    ["Deploy Site", "Publicar main en ChatGPT Sites (Business)", "Pendiente dueño/editor"]
+  ],
+  "commits": [
+    { "hash": "0cb31d9", "subject": "Add guided Credit Karma, IdentityIQ, and ACR update flow for clients." },
+    { "hash": "ad5fd1c", "subject": "chore(version): 0.0.1.27" }
+  ],
+  "sections": [
+    {
+      "label": "Producto",
+      "title": "1. Flujo Actualizar credito",
+      "paragraphs": [
+        "El cliente elige fuente (Credit Karma o IdentityIQ para score; AnnualCreditReport para PDF de buro), abre el sitio en una pestana nueva, vuelve a OXXUS y sube captura o PDF. Opcionalmente extrae puntajes con Asistente OXXUS (Vision) y confirma antes de guardar en score_progress, con historial de deltas vs linea base.",
+        "No hay login automatico, scraping ni almacenamiento de claves de terceros. Eso evita riesgo legal y cumple la decision de Fase 1."
+      ]
+    },
+    {
+      "label": "Producto",
+      "title": "2. Ayuda y CTAs",
+      "paragraphs": [
+        "CreditReportHelp ahora lista Credit Karma e IdentityIQ como monitoreo de score, y AnnualCreditReport.com como fuente oficial de reportes gratuitos. CTAs 'Actualizar credito' en el home del cliente y en el plan analizado hacen scroll a la seccion de actualizacion."
+      ],
+      "table": {
+        "headers": ["Archivo", "Cambio"],
+        "widths": [220, 300],
+        "rows": [
+          ["app/creditUpdateSources.ts", "Catalogo URLs, pasos ES/EN, privacidad"],
+          ["app/ClientScoreUpdates.tsx", "Selector de fuente + guia + upload"],
+          ["app/CreditReportHelp.tsx", "Enlaces CK / IIQ / ACR"],
+          ["app/ClientCreditReportPortal.tsx", "CTA + seccion en portal"],
+          ["app/page.tsx", "CTA home cliente"],
+          ["CSS score/help", "Cards de fuente y pasos"]
+        ]
+      }
+    },
+    {
+      "label": "Ops",
+      "title": "3. GitHub y produccion",
+      "paragraphs": [
+        "Push a main del repo OxxusMaquiavelo/oxxus-credit-solutions. Action Bump OXXUS version publico 0.0.1.27 (tag v0.0.1.27 esperado).",
+        "El frontend de produccion se sirve por ChatGPT Sites (project_id appgprj_6a8666f36c00819197bde94ab389cb85). Hay que republicar el Site desde Work con el ultimo main. El dominio oxxuscreditsolutions.com puede seguir ligado al Site anterior hasta que la cuenta propietaria (TU SALUD INSURANCE) reasocie el dominio al Site Business."
+      ]
+    },
+    {
+      "label": "Alcance",
+      "title": "4. Fuera de esta entrega",
+      "paragraphs": [
+        "Soft-pull con vendor de credito (Fase 2), OAuth/cuenta vinculada a Credit Karma o IdentityIQ, y parseo automatico de PDF de buro para scores no forman parte de esta fase."
+      ]
+    }
+  ],
+  "nextSteps": [
+    ["1", "Republicar Site Business desde ChatGPT Work con main @ 0.0.1.27", "Editor / Work"],
+    ["2", "Smoke: CTA Actualizar credito + 3 fuentes + aviso de privacidad", "Edjouner"],
+    ["3", "Reasignar oxxuscreditsolutions.com al Site Business (si aun apunta al viejo)", "Dueno Site"],
+    ["4", "Evaluar Fase 2 soft-pull con vendor FCRA (costo/compliance)", "Direccion"]
+  ],
+  "closing": "Bloque entregable cerrado en codigo (main 0.0.1.27). Impacto: el cliente puede actualizar score o reporte con guia segura, sin compartir claves. Visibilidad en produccion depende de republicar el Site ChatGPT y, si aplica, de reasignar el dominio custom."
+}

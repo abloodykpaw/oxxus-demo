@@ -1,0 +1,15 @@
+import fs from "node:fs";
+const p = fs.readFileSync("app/page.tsx", "utf8");
+const start = p.indexOf("userName =");
+console.log(p.slice(start, start + 900));
+console.log("==== TOP ====");
+const t = p.indexOf("top-actions");
+console.log(p.slice(t - 80, t + 500));
+console.log("==== CONTENT ====");
+const c = p.indexOf('className="content"');
+console.log(p.slice(c - 40, c + 200));
+console.log("==== LABELS ====");
+console.log(/roleLabel/.test(p), /roleLabelEnglish/.test(p), /roleLabelEn/.test(p));
+console.log("==== FINAL NAV ====");
+const n = p.indexOf("const finalNav");
+console.log(p.slice(n, n + 450));

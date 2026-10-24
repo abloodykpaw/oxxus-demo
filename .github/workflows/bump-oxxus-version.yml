@@ -1,0 +1,53 @@
+name: Bump OXXUS version
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bump-oxxus-version
+  cancel-in-progress: false
+
+jobs:
+  bump:
+    if: ${{ !startsWith(github.event.head_commit.message, 'chore(version):') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Bump VERSION
+        id: bump
+        env:
+          VERSION_SINCE: ${{ github.event.before }}
+        run: |
+          NEXT=$(node scripts/bump-oxxus-version.mjs)
+          echo "version=$NEXT" >> "$GITHUB_OUTPUT"
+          echo "Bumped to $NEXT"
+
+      - name: Commit, tag, and push
+        env:
+          VERSION: ${{ steps.bump.outputs.version }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add VERSION lib/oxxus-version.ts
+          if git diff --cached --quiet; then
+            echo "No version file changes; skipping."
+            exit 0
+          fi
+          git commit -m "chore(version): ${VERSION}"
+          git tag "v${VERSION}"
+          git push origin HEAD:main
+          git push origin "v${VERSION}"

@@ -1,0 +1,19 @@
+{
+  "defaultSiteUrl": "https://oxxuscreditsolutions.com",
+  "hosts": [
+    "oxxuscreditsolutions.com",
+    "www.oxxuscreditsolutions.com",
+    "oxxus-credit-solutions-business.oxxus-org-6997.chatgpt.site",
+    "oxxus-credit-solutions.oxxusmaquiavelo.chatgpt.site",
+    "localhost",
+    "127.0.0.1"
+  ],
+  "uriAllowList": [
+    "https://oxxuscreditsolutions.com/**",
+    "https://www.oxxuscreditsolutions.com/**",
+    "https://oxxus-credit-solutions-business.oxxus-org-6997.chatgpt.site/**",
+    "https://oxxus-credit-solutions.oxxusmaquiavelo.chatgpt.site/**",
+    "http://localhost:3000/**",
+    "http://127.0.0.1:3000/**"
+  ]
+}

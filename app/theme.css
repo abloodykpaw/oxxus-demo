@@ -1,0 +1,753 @@
+/* OXXUS modern dark theme — same structure & navy/blue palette */
+
+html[data-theme="dark"] {
+  --navy: #e4eefc;
+  --blue: #5b9bff;
+  --ink: #e8eef8;
+  --muted: #93a4bb;
+  --line: #24344c;
+  --bg: #070d18;
+  --surface: #101826;
+  --surface-2: #162033;
+  --surface-3: #1c2a42;
+  --green: #2ecf9a;
+  --shadow: #00000055;
+  --shadow-lg: #00000066;
+  color-scheme: dark;
+}
+
+html[data-theme="dark"] body {
+  background:
+    radial-gradient(900px 420px at 100% -10%, #1a3a6e44, transparent 55%),
+    radial-gradient(700px 380px at -10% 0%, #0f274a55, transparent 50%),
+    var(--bg);
+  color: var(--ink);
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 5px 10px 5px 5px;
+  cursor: pointer;
+  transition: background .2s ease, border-color .2s ease, transform .15s ease, box-shadow .2s ease;
+}
+
+.theme-toggle:hover {
+  background: var(--surface-2);
+  border-color: color-mix(in srgb, var(--blue) 40%, var(--line));
+  box-shadow: 0 6px 16px var(--shadow);
+}
+
+.theme-toggle:active { transform: scale(0.98); }
+
+.theme-toggle-track {
+  width: 34px;
+  height: 22px;
+  border-radius: 999px;
+  background: linear-gradient(145deg, #e8eef8, #d7e4f7);
+  display: grid;
+  align-items: center;
+  padding: 2px;
+}
+
+html[data-theme="dark"] .theme-toggle-track {
+  background: linear-gradient(145deg, #1a2740, #243556);
+}
+
+.theme-toggle-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  color: #d39a1a;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  line-height: 1;
+  box-shadow: 0 2px 6px #0c274630;
+  transition: transform .2s ease, background .2s ease, color .2s ease;
+}
+
+html[data-theme="dark"] .theme-toggle-thumb {
+  transform: translateX(12px);
+  background: #0f1728;
+  color: #8eb6ff;
+  box-shadow: 0 2px 8px #0008;
+}
+
+.theme-toggle-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .4px;
+  color: var(--muted);
+  min-width: 38px;
+  text-align: left;
+}
+
+@media (max-width: 640px) {
+  .theme-toggle-label { display: none; }
+  .theme-toggle { padding: 5px; }
+}
+
+.login-theme-row {
+  display: grid;
+  gap: 18px;
+  margin-bottom: 8px;
+}
+
+.login-theme-row .theme-toggle { justify-self: end; }
+
+/* Surfaces */
+html[data-theme="dark"] .loading-screen { background: var(--bg); color: var(--ink); }
+
+html[data-theme="dark"] .sidebar,
+html[data-theme="dark"] .topbar {
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  border-color: var(--line);
+  box-shadow: none;
+}
+
+@media (max-width: 760px) {
+  html[data-theme="dark"] .sidebar {
+    background: color-mix(in srgb, var(--surface) 94%, #000);
+  }
+}
+
+html[data-theme="dark"] .panel,
+html[data-theme="dark"] .stats article,
+html[data-theme="dark"] .form-card,
+html[data-theme="dark"] .file-section,
+html[data-theme="dark"] .client-profile-section,
+html[data-theme="dark"] .invite-card,
+html[data-theme="dark"] .user-directory,
+html[data-theme="dark"] .assignment-manager,
+html[data-theme="dark"] .invite-history,
+html[data-theme="dark"] .module .panel {
+  background: var(--surface);
+  border-color: var(--line);
+  color: var(--ink);
+  box-shadow: 0 10px 28px var(--shadow);
+}
+
+/* Module titles stay flush with the page — no card/box around the hero */
+html[data-theme="dark"] .module-hero {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  color: var(--ink);
+}
+
+html[data-theme="dark"] .record-count,
+html[data-theme="dark"] .panel-heading > span {
+  background: color-mix(in srgb, var(--blue) 18%, transparent);
+  color: #9ec5ff;
+  box-shadow: none;
+  border: 0;
+}
+
+html[data-theme="dark"] .draft {
+  background: color-mix(in srgb, #f0b84a 16%, transparent);
+  color: #f0b84a;
+  box-shadow: none;
+  border: 0;
+}
+
+html[data-theme="dark"] .nav-item { color: #9aabc2; }
+
+html[data-theme="dark"] .nav-item:hover {
+  background: var(--surface-2);
+  color: var(--blue);
+}
+
+html[data-theme="dark"] .nav-item.active {
+  background: linear-gradient(135deg, #17345a, #1a3d68);
+  color: #9ec5ff;
+  box-shadow: inset 0 0 0 1px #2a4f7d;
+}
+
+html[data-theme="dark"] .nav-item .nav-ico {
+  background: #ffffff0d;
+  color: #9ec5ff;
+}
+
+html[data-theme="dark"] .nav-item.active .nav-ico {
+  background: #1a7bff33;
+  color: #7eb6ff;
+}
+
+html[data-theme="dark"] .trust-item {
+  background: var(--surface);
+  border-color: var(--line);
+  box-shadow: 0 10px 28px var(--shadow);
+}
+
+html[data-theme="dark"] .trust-item .trust-ico {
+  background: #163a66;
+  color: #9ec5ff;
+}
+
+html[data-theme="dark"] .language-toggle {
+  border-color: var(--line);
+  background: var(--surface);
+  color: var(--muted);
+}
+
+html[data-theme="dark"] .language-toggle span.active {
+  color: var(--blue);
+}
+
+html[data-theme="dark"] .brand,
+html[data-theme="dark"] .topbar h1,
+html[data-theme="dark"] .welcome h2,
+html[data-theme="dark"] .panel-heading h3,
+html[data-theme="dark"] .sidebar-footer b,
+html[data-theme="dark"] .module-hero h2 {
+  color: var(--ink);
+}
+
+/* Dual logo: transparent light/dark variants — no white/navy plate */
+.logo-brand {
+  display: grid;
+  place-items: center;
+}
+
+.login-brand .logo-brand {
+  place-items: start;
+}
+
+.logo-brand .logo-image {
+  background: transparent !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  filter: none;
+}
+
+.logo-brand .logo-dark {
+  display: none;
+}
+
+/* Sidebar + login: swap logo by theme */
+html[data-theme="dark"] .sidebar .logo-brand .logo-light,
+html[data-theme="dark"] .login-brand .logo-brand .logo-light,
+html[data-theme="dark"] .login-mobile-logo.logo-brand .logo-light {
+  display: none;
+}
+
+html[data-theme="dark"] .sidebar .logo-brand .logo-dark,
+html[data-theme="dark"] .login-brand .logo-brand .logo-dark,
+html[data-theme="dark"] .login-mobile-logo.logo-brand .logo-dark {
+  display: block;
+}
+
+html[data-theme="dark"] .sidebar .logo-brand,
+html[data-theme="dark"] .login-brand .logo-brand {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* The supplied dark logo includes a near-black canvas. Lighten lets that
+   canvas blend into the OXXUS navy sidebar while preserving the mark. */
+html[data-theme="dark"] .sidebar .logo-brand .logo-dark,
+html[data-theme="dark"] .login-brand .logo-brand .logo-dark {
+  mix-blend-mode: lighten;
+}
+
+html[data-theme="dark"] .login-shell {
+  background:
+    radial-gradient(900px 420px at 100% -10%, #1a3a6e44, transparent 55%),
+    radial-gradient(700px 380px at -10% 0%, #0f274a55, transparent 50%),
+    var(--bg);
+}
+
+html[data-theme="dark"] .login-brand {
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  border-color: var(--line);
+  color: var(--ink);
+}
+
+html[data-theme="dark"] .login-brand h1 {
+  color: var(--ink);
+}
+
+html[data-theme="dark"] .login-brand > p {
+  color: var(--muted);
+}
+
+html[data-theme="dark"] .login-points .login-point b {
+  color: var(--ink);
+}
+
+html[data-theme="dark"] .login-points .login-point .point-ico {
+  background: #163a66;
+  color: #9ec5ff;
+}
+
+html[data-theme="dark"] .login-card {
+  background: var(--surface) !important;
+  border-color: var(--line) !important;
+  box-shadow: 0 24px 70px var(--shadow) !important;
+  color: var(--ink) !important;
+}
+
+html[data-theme="dark"] .login-card h2,
+html[data-theme="dark"] .login-card label {
+  color: var(--ink) !important;
+}
+
+html[data-theme="dark"] .login-card > div > p:last-child,
+html[data-theme="dark"] .login-theme-row p,
+html[data-theme="dark"] .privacy-note {
+  color: var(--muted) !important;
+}
+
+html[data-theme="dark"] .login-message {
+  background: #17335a !important;
+  color: #9ec1ff !important;
+  border-color: #35507a !important;
+}
+
+html[data-theme="dark"] .login-card .primary {
+  background: linear-gradient(135deg, #0c2746, #1769e0);
+  color: #fff;
+}
+
+html[data-theme="dark"] .auth-tabs {
+  background: var(--surface-2);
+}
+
+html[data-theme="dark"] .auth-tabs button {
+  color: var(--muted);
+}
+
+html[data-theme="dark"] .auth-tabs button.active {
+  background: var(--surface);
+  color: var(--blue);
+  box-shadow: 0 2px 10px var(--shadow);
+}
+
+html[data-theme="dark"] .login-card input {
+  background: var(--surface-2) !important;
+  border-color: var(--line) !important;
+  color: var(--ink) !important;
+}
+
+html[data-theme="dark"] .avatar {
+  background: linear-gradient(145deg, #1d4f93, #2f6fc4);
+}
+
+html[data-theme="dark"] .avatar.pale {
+  background: #1d3358;
+  color: #9ec1ff;
+}
+
+html[data-theme="dark"] .icon-button {
+  background: var(--surface-2);
+  color: #9aabc2;
+}
+
+html[data-theme="dark"] .icon-button:hover {
+  background: var(--surface-3);
+  color: var(--blue);
+}
+
+html[data-theme="dark"] .icon-button i {
+  border-color: var(--surface);
+}
+
+html[data-theme="dark"] .backend {
+  background: var(--surface-2);
+  color: var(--muted);
+}
+
+html[data-theme="dark"] .backend.online {
+  background: #12352c;
+  color: #3dd6a5;
+}
+
+html[data-theme="dark"] .primary {
+  background: linear-gradient(180deg, #4d8fff, #2f73e8);
+  box-shadow: 0 10px 22px #1769e044;
+}
+
+html[data-theme="dark"] .task-list button { background: var(--surface); }
+html[data-theme="dark"] .task-list button:hover { background: var(--surface-2); }
+
+html[data-theme="dark"] .cases th {
+  background: var(--surface-2);
+  color: #8fa0b8;
+  border-color: var(--line);
+}
+
+html[data-theme="dark"] .cases td {
+  border-color: var(--line);
+  color: #a7b6cb;
+}
+
+html[data-theme="dark"] .cases tr.clickable-row:hover { background: var(--surface-2); }
+
+@media (max-width: 760px) {
+  html[data-theme="dark"] .cases tr.clickable-row {
+    background: var(--surface);
+    border-color: var(--line);
+    box-shadow: none;
+  }
+}
+html[data-theme="dark"] .cases td:first-child b { color: var(--ink); }
+
+html[data-theme="dark"] .donut:after { background: var(--surface); }
+
+html[data-theme="dark"] .stat-icon.blue { background: #17335a; color: #7eb0ff; }
+html[data-theme="dark"] .stat-icon.violet { background: #1a3358; color: #8eb6ff; }
+html[data-theme="dark"] .stat-icon.amber { background: #3a2e14; color: #f0b84a; }
+html[data-theme="dark"] .stat-icon.green { background: #12352c; color: #3dd6a5; }
+
+html[data-theme="dark"] .blue-person { background: #17335a; color: #7eb0ff; }
+html[data-theme="dark"] .purple-person { background: #1a3358; color: #8eb6ff; }
+
+html[data-theme="dark"] .level1,
+html[data-theme="dark"] .invitation-list em {
+  background: color-mix(in srgb, var(--blue) 18%, transparent);
+  color: #9ec5ff;
+}
+
+html[data-theme="dark"] .status.waiting,
+html[data-theme="dark"] .invitation-list i {
+  background: color-mix(in srgb, #f0b84a 16%, transparent);
+  color: #f0b84a;
+}
+
+html[data-theme="dark"] .status.ready,
+html[data-theme="dark"] .admin-table em.confirmed {
+  background: #12352c;
+  color: #3dd6a5;
+}
+
+html[data-theme="dark"] .progress:before { background: #2a384f; }
+html[data-theme="dark"] .progress i {
+  background: linear-gradient(90deg, #2f73e8, #5b9bff);
+}
+
+html[data-theme="dark"] input,
+html[data-theme="dark"] select,
+html[data-theme="dark"] textarea,
+html[data-theme="dark"] .admin-table select,
+html[data-theme="dark"] .assignment-list select {
+  background: var(--surface-2) !important;
+  border-color: var(--line) !important;
+  color: var(--ink) !important;
+}
+
+html[data-theme="dark"] .report-uploader {
+  background: var(--surface-2) !important;
+  border-color: #35507a !important;
+}
+
+html[data-theme="dark"] .report-uploader > em,
+html[data-theme="dark"] .analysis-note,
+html[data-theme="dark"] .new-case-step > span {
+  background: #17335a;
+  color: #9ec1ff;
+}
+
+html[data-theme="dark"] .analysis-note span { color: #93a4bb; }
+
+html[data-theme="dark"] .admin-message,
+html[data-theme="dark"] .form-message,
+html[data-theme="dark"] .new-case-message,
+html[data-theme="dark"] .profile-message {
+  background: #12352c;
+  color: #3dd6a5;
+}
+
+html[data-theme="dark"] .permission-note,
+html[data-theme="dark"] .access-panel,
+html[data-theme="dark"] .empty-state > span {
+  background: var(--surface-2);
+  border-color: var(--line);
+  color: var(--muted);
+}
+
+html[data-theme="dark"] .loading-panel { background: var(--surface); color: var(--muted); }
+html[data-theme="dark"] .error-panel { color: #ff8f86; background: #3a1c1c; }
+
+html[data-theme="dark"] .client-info-grid article,
+html[data-theme="dark"] .file-heading,
+html[data-theme="dark"] .module { color: var(--ink); }
+
+html[data-theme="dark"] .edit-profile-button,
+html[data-theme="dark"] .panel-heading button { color: var(--blue); }
+
+html[data-theme="dark"] .toast {
+  background: #15233a;
+  box-shadow: 0 10px 30px var(--shadow);
+}
+
+html[data-theme="dark"] .client-file,
+html[data-theme="dark"] .drawer,
+html[data-theme="dark"] .letter-card,
+html[data-theme="dark"] .dispute-group,
+html[data-theme="dark"] .week-card,
+html[data-theme="dark"] .file-body {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+html[data-theme="dark"] .file-overlay { background: #02060dcc; }
+
+html[data-theme="dark"] .client-file > header {
+  background: linear-gradient(135deg, #0b2a50, #1453a0);
+}
+
+html[data-theme="dark"] .task-icon.amber { background: #3a2e14; color: #f0b84a; }
+html[data-theme="dark"] .task-icon.blue { background: #17335a; color: #7eb0ff; }
+html[data-theme="dark"] .task-icon.red { background: #3a1c1c; color: #ff8f86; }
+
+html[data-theme="dark"] .library-note {
+  background: #3a2e14;
+  border-color: #5a4620;
+  color: #f0d9a0;
+}
+
+html[data-theme="dark"] .dispute-client-head {
+  background: var(--surface);
+}
+
+html[data-theme="dark"] .dispute-client-head:hover,
+html[data-theme="dark"] .dispute-client-body {
+  background: var(--surface-2);
+}
+
+html[data-theme="dark"] .module-table th,
+html[data-theme="dark"] .toolbar label,
+html[data-theme="dark"] .library-toolbar label,
+html[data-theme="dark"] .library-toolbar select {
+  background: var(--surface-2);
+  border-color: var(--line);
+  color: var(--muted);
+}
+
+/* Complete nocturnal surface coverage. Components created after the original
+   theme must never fall back to a white application surface. */
+html[data-theme="dark"] .client-report-upload,
+html[data-theme="dark"] .client-analysis-pending,
+html[data-theme="dark"] .client-plan-summary,
+html[data-theme="dark"] .client-plan-facts article,
+html[data-theme="dark"] .client-info-grid article,
+html[data-theme="dark"] .file-summary article,
+html[data-theme="dark"] .score-cards article,
+html[data-theme="dark"] .mini-records article,
+html[data-theme="dark"] .mailing-row,
+html[data-theme="dark"] .inline-week-detail,
+html[data-theme="dark"] .letter-view,
+html[data-theme="dark"] .mailing-guide,
+html[data-theme="dark"] .progress-section,
+html[data-theme="dark"] .progress-gallery article,
+html[data-theme="dark"] .user-editor,
+html[data-theme="dark"] .editor-actions .secondary,
+html[data-theme="dark"] .bureau-upload,
+html[data-theme="dark"] .resource-link-list a,
+html[data-theme="dark"] .upload-path-choice button {
+  background: var(--surface) !important;
+  border-color: var(--line) !important;
+  color: var(--ink) !important;
+  box-shadow: 0 10px 28px var(--shadow);
+}
+
+html[data-theme="dark"] .client-file-picker,
+html[data-theme="dark"] .evidence-picker,
+html[data-theme="dark"] .envelope-note,
+html[data-theme="dark"] .enclosure-list li,
+html[data-theme="dark"] .sent-check,
+html[data-theme="dark"] .user-editor input:disabled,
+html[data-theme="dark"] .user-editor select:disabled,
+html[data-theme="dark"] .self-protection {
+  background: var(--surface-2) !important;
+  border-color: var(--line) !important;
+  color: var(--muted) !important;
+}
+
+html[data-theme="dark"] .client-plan-facts article,
+html[data-theme="dark"] .score-cards article,
+html[data-theme="dark"] .mini-records article,
+html[data-theme="dark"] .progress-gallery article,
+html[data-theme="dark"] .bureau-upload,
+html[data-theme="dark"] .document-action:not(.primary),
+html[data-theme="dark"] .resource-link-list a {
+  background: var(--surface-2) !important;
+}
+
+html[data-theme="dark"] .document-action:not(.primary) {
+  border-color: var(--line);
+  color: var(--ink);
+}
+
+html[data-theme="dark"] .process-letter-row:hover,
+html[data-theme="dark"] .document-row:hover {
+  background: var(--surface-2);
+}
+
+html[data-theme="dark"] .client-priority-list article {
+  background: #332817;
+  border: 1px solid #59401b;
+  color: var(--ink);
+}
+
+html[data-theme="dark"] .client-priority-list article > span {
+  background: #4a3517;
+  color: #ffc967;
+}
+
+html[data-theme="dark"] .client-upload-icon,
+html[data-theme="dark"] .client-strategy li > b,
+html[data-theme="dark"] .file-record > span,
+html[data-theme="dark"] .mailing-row > span,
+html[data-theme="dark"] .file-heading > span,
+html[data-theme="dark"] .pdf-evidence,
+html[data-theme="dark"] .bureau-upload-icon {
+  background: #17335a;
+  color: #9ec5ff;
+}
+
+html[data-theme="dark"] .client-analysis-icon,
+html[data-theme="dark"] .client-plan-ready,
+html[data-theme="dark"] .mailing-row.sent > span,
+html[data-theme="dark"] .mailing-row.sent em,
+html[data-theme="dark"] .week-timeline .done > div b,
+html[data-theme="dark"] .week-timeline .done em {
+  background: #12352c;
+  color: #54dfb1;
+}
+
+html[data-theme="dark"] .official-report-card {
+  background: linear-gradient(120deg, #0a203b, #104d91);
+  border: 1px solid #285c91;
+  box-shadow: 0 18px 42px #00000066;
+}
+
+html[data-theme="dark"] .official-report-link {
+  background: #dbeaff !important;
+  color: #0a4eae !important;
+}
+
+html[data-theme="dark"] .report-privacy-note,
+html[data-theme="dark"] .analysis-note,
+html[data-theme="dark"] .file-message,
+html[data-theme="dark"] .client-report-message {
+  background: #142c4c !important;
+  border-color: #294d79 !important;
+  color: #a9ccff !important;
+}
+
+html[data-theme="dark"] .upload-path-choice button.active,
+html[data-theme="dark"] .week-timeline.interactive > article:hover,
+html[data-theme="dark"] .week-timeline.interactive > article.selected,
+html[data-theme="dark"] .week-timeline.interactive > .week-block > article:hover,
+html[data-theme="dark"] .week-timeline.interactive > .week-block > article.selected,
+html[data-theme="dark"] .mailing-row:hover {
+  background: var(--surface-3) !important;
+  border-color: #416b9f !important;
+}
+
+html[data-theme="dark"] .week-timeline > article > div b,
+html[data-theme="dark"] .week-block > article > div b,
+html[data-theme="dark"] .week-timeline > article > div i,
+html[data-theme="dark"] .week-block > article > div i,
+html[data-theme="dark"] .week-timeline > article em,
+html[data-theme="dark"] .week-block > article > em {
+  background: var(--surface-3);
+  color: #a8b8cd;
+}
+
+html[data-theme="dark"] .client-plan-summary h2,
+html[data-theme="dark"] .client-analysis-pending h2,
+html[data-theme="dark"] .client-plan-facts strong,
+html[data-theme="dark"] .score-cards strong,
+html[data-theme="dark"] .client-info-grid b,
+html[data-theme="dark"] .file-summary b,
+html[data-theme="dark"] .mailing-row b,
+html[data-theme="dark"] .progress-gallery b,
+html[data-theme="dark"] .user-editor h3,
+html[data-theme="dark"] .report-help h2,
+html[data-theme="dark"] .report-help h3 {
+  color: var(--ink) !important;
+}
+
+html[data-theme="dark"] .client-edit-form label,
+html[data-theme="dark"] .progress-form label,
+html[data-theme="dark"] .progress-scores label,
+html[data-theme="dark"] .user-editor label,
+html[data-theme="dark"] .week-timeline p,
+html[data-theme="dark"] .file-table td,
+html[data-theme="dark"] .mini-records em,
+html[data-theme="dark"] .file-record em,
+html[data-theme="dark"] .client-priority-list small {
+  color: var(--muted) !important;
+}
+
+html[data-theme="dark"] .edit-profile-button,
+html[data-theme="dark"] .edit-user-button {
+  background: #17335a;
+  border-color: #355b8b;
+  color: #a8cbff;
+}
+
+html[data-theme="dark"] .edit-user-button:hover {
+  background: #20436f;
+}
+
+/* Letter and envelope previews intentionally remain paper-colored and always
+   carry dark ink so the mailed document preview stays accurate and readable. */
+html[data-theme="dark"] .paper-letter,
+html[data-theme="dark"] .template-paper,
+html[data-theme="dark"] .envelope {
+  color: #101820 !important;
+}
+
+html[data-theme="dark"] .repair-progress {
+  background: linear-gradient(180deg, rgba(18, 97, 189, 0.14), #121a26);
+  border-color: #2a384f;
+  box-shadow: none;
+}
+html[data-theme="dark"] .repair-progress-head h3,
+html[data-theme="dark"] .repair-progress-head strong,
+html[data-theme="dark"] .repair-progress-steps b { color: #e8eef7; }
+html[data-theme="dark"] .repair-progress-track { background: #2a384f; }
+html[data-theme="dark"] .repair-progress-steps .step-dot { background: #121a26; border-color: #3a4b66; }
+
+html[data-theme="dark"] .role-preview-select {
+  background: var(--surface-2);
+  border-color: var(--line);
+  color: var(--ink);
+}
+html[data-theme="dark"] .role-preview-select span { color: var(--muted); }
+html[data-theme="dark"] .role-preview-select select { color: var(--ink); }
+html[data-theme="dark"] .role-preview-banner {
+  background: linear-gradient(180deg, rgba(240, 184, 74, 0.14), #121a26);
+  border-color: #5a4630;
+  color: #f3d9a2;
+}
+html[data-theme="dark"] .role-preview-banner b { color: #f0b84a; }
+html[data-theme="dark"] .role-preview-banner em { color: #e8eef7; }
+
+html[data-theme="dark"] .client-focus-card {
+  background: var(--surface);
+  border-color: var(--line);
+  box-shadow: none;
+}
+html[data-theme="dark"] .client-focus-card.next {
+  background: linear-gradient(180deg, rgba(18, 97, 189, 0.16), var(--surface));
+}
+html[data-theme="dark"] .client-focus-card h3,
+html[data-theme="dark"] .client-score-row strong { color: var(--ink); }
+html[data-theme="dark"] .client-score-row div {
+  background: color-mix(in srgb, #fff 6%, transparent);
+}

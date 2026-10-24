@@ -1,0 +1,21 @@
+.client-plan-actions {
+  display: grid;
+  gap: 9px;
+  justify-items: end;
+}
+
+.client-plan-actions .primary,
+.client-plan-actions .secondary {
+  white-space: nowrap;
+}
+
+@media (max-width: 650px) {
+  .client-plan-actions {
+    justify-items: stretch;
+    width: 100%;
+  }
+
+  .client-plan-actions .client-plan-ready {
+    text-align: center;
+  }
+}

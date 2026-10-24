@@ -1,0 +1,134 @@
+/* Trust Desk · Nuevo caso */
+
+.new-case-card {
+  max-width: 780px;
+}
+
+.new-case-step {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.new-case-step > span {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  border-radius: 9px;
+  background: color-mix(in srgb, var(--blue) 14%, var(--surface));
+  color: var(--blue);
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.new-case-step h3 {
+  margin: 0 0 4px;
+  font-size: 15px;
+  color: var(--ink);
+}
+
+.new-case-step p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.report-step {
+  margin-top: 26px;
+}
+
+.full-field {
+  grid-column: 1 / -1;
+}
+
+.report-uploader {
+  position: relative;
+  display: grid !important;
+  grid-template-columns: 40px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  border: 1.5px dashed color-mix(in srgb, var(--blue) 35%, var(--line)) !important;
+  background: color-mix(in srgb, var(--blue) 6%, var(--surface)) !important;
+  border-radius: 12px;
+  padding: 18px !important;
+  cursor: pointer;
+  color: var(--blue);
+}
+
+.report-uploader > div {
+  display: grid;
+  gap: 4px;
+}
+
+.report-uploader b {
+  font-size: 13px;
+  color: var(--ink);
+}
+
+.report-uploader small {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.report-uploader > em {
+  font-style: normal;
+  background: color-mix(in srgb, var(--blue) 14%, var(--surface));
+  color: var(--blue);
+  border-radius: 9px;
+  padding: 9px 12px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.report-uploader input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.analysis-note {
+  display: grid;
+  gap: 6px;
+  background: color-mix(in srgb, var(--blue) 8%, var(--surface));
+  border-left: 3px solid var(--blue);
+  border-radius: 0 10px 10px 0;
+  padding: 14px 16px;
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--ink);
+}
+
+.analysis-note span {
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.new-case-message {
+  text-align: left;
+  background: color-mix(in srgb, var(--green) 12%, var(--surface));
+  color: var(--green);
+  padding: 12px;
+  border-radius: 10px;
+  line-height: 1.5;
+  font-size: 13px;
+}
+
+@media (max-width: 620px) {
+  .report-uploader {
+    grid-template-columns: 32px 1fr;
+  }
+
+  .report-uploader > em {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .full-field {
+    grid-column: auto;
+  }
+}
+

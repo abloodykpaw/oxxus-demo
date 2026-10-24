@@ -1,0 +1,244 @@
+/* Trust Desk · modules (Clientes, Casos, forms shared) */
+
+.module {
+  color: var(--ink);
+}
+
+.module-hero {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 2px 0 22px;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+}
+
+.module-hero h2 {
+  font-size: 24px;
+  margin: 0 0 7px;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.module-hero > div > p:last-child {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 0;
+  line-height: 1.45;
+  max-width: 640px;
+}
+
+.record-count {
+  background: color-mix(in srgb, var(--blue) 12%, var(--surface));
+  color: var(--blue);
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 8px 12px;
+  white-space: nowrap;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.toolbar label {
+  flex: 1;
+  max-width: 420px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  padding: 10px 14px;
+  color: var(--muted);
+  background: var(--surface-2);
+}
+
+.toolbar label svg {
+  flex: 0 0 auto;
+  color: var(--muted);
+}
+
+.toolbar input {
+  border: 0;
+  outline: 0;
+  width: 100%;
+  font-size: 13px;
+  background: transparent;
+  color: var(--ink);
+  font-family: inherit;
+}
+
+.toolbar input::placeholder {
+  color: var(--muted);
+}
+
+.toolbar button,
+.secondary {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 11px;
+  color: var(--ink);
+  padding: 10px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.module-table table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.module-table th {
+  background: var(--surface-2);
+  color: var(--muted);
+  text-align: left;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 13px 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.module-table td {
+  border-top: 1px solid var(--line);
+  padding: 16px 18px;
+  font-size: 13px;
+  color: color-mix(in srgb, var(--ink) 78%, var(--muted));
+  vertical-align: top;
+}
+
+.module-table td b {
+  display: block;
+  color: var(--ink);
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.module-table .open-file {
+  display: inline-block;
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+.module-table tr.clickable-row {
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+
+.module-table tr.clickable-row:hover {
+  background: var(--surface-2);
+}
+
+.module-table .case-id {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--blue);
+}
+
+.draft {
+  font-size: 11px;
+  font-weight: 700;
+  color: #c47a05;
+  background: #f59e0b18;
+  border-radius: 999px;
+  padding: 8px 12px;
+  white-space: nowrap;
+}
+
+.form-card,
+.upload-card,
+.plan {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 26px;
+}
+
+.form-card h3,
+.upload-card h3 {
+  font-size: 16px;
+  margin: 0 0 6px;
+  color: var(--ink);
+}
+
+.form-card > p,
+.upload-card > p {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0 0 22px;
+  line-height: 1.45;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-grid label,
+.recommendation label {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.form-grid input,
+.form-grid select,
+.recommendation select {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  padding: 12px 14px;
+  margin-top: 7px;
+  color: var(--ink);
+  background: var(--surface);
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.form-grid input:focus,
+.form-grid select:focus {
+  outline: 0;
+  border-color: color-mix(in srgb, var(--blue) 55%, var(--line));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--blue) 16%, transparent);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  border-top: 1px solid var(--line);
+  margin-top: 24px;
+  padding-top: 20px;
+}
+
+@media (max-width: 760px) {
+  .module-hero {
+    align-items: flex-start;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .toolbar label {
+    max-width: none;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

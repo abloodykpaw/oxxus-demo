@@ -1,0 +1,16 @@
+alter function public.set_updated_at() set search_path=public;
+revoke all on function public.handle_new_user() from public,anon,authenticated;
+revoke all on function public.current_role() from public,anon;
+revoke all on function public.is_admin() from public,anon;
+revoke all on function public.is_repair_agent() from public,anon;
+revoke all on function public.is_team_member() from public,anon;
+revoke all on function public.can_manage_client(uuid) from public,anon;
+revoke all on function public.can_manage_case(uuid) from public,anon;
+revoke all on function public.get_dashboard_cases() from public,anon;
+grant execute on function public.current_role() to authenticated;
+grant execute on function public.is_admin() to authenticated;
+grant execute on function public.is_repair_agent() to authenticated;
+grant execute on function public.is_team_member() to authenticated;
+grant execute on function public.can_manage_client(uuid) to authenticated;
+grant execute on function public.can_manage_case(uuid) to authenticated;
+grant execute on function public.get_dashboard_cases() to authenticated;

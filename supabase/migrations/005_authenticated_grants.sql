@@ -1,0 +1,13 @@
+grant usage on schema public to authenticated;
+grant select, insert, update, delete on public.clients to authenticated;
+grant select, insert, update, delete on public.profiles to authenticated;
+grant select, insert, update, delete on public.cases to authenticated;
+grant select, insert, update, delete on public.credit_reports to authenticated;
+grant select, insert, update, delete on public.credit_scores to authenticated;
+grant select, insert, update, delete on public.credit_accounts to authenticated;
+grant select, insert, update, delete on public.case_weeks to authenticated;
+grant select, insert, update, delete on public.disputes to authenticated;
+grant select, insert, update, delete on public.letters to authenticated;
+grant select, insert, update, delete on public.documents to authenticated;
+grant select, insert, update, delete on public.case_activity to authenticated;
+grant usage, select on all sequences in schema public to authenticated;
