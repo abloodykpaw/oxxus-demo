@@ -63,7 +63,7 @@ export async function GET() {
   try {
     const sql = getSql();
 
-    const [cases, reports, scores, accounts, profiles] = await Promise.all([
+    const [cases, reports, scores, accounts, profiles] = (await Promise.all([
       sql`
         select
           c.id,
@@ -88,16 +88,16 @@ export async function GET() {
         from public.demo_cases c
         join public.demo_clients cl on cl.id = c.client_id
         order by c.created_at desc
-      ` as Promise<CaseRow[]>,
+      `,
       sql`
         select id, case_id, provider, storage_path, processing_status, created_at
         from public.demo_credit_reports
         order by created_at desc
-      ` as Promise<ReportRow[]>,
+      `,
       sql`
         select report_id, bureau, score
         from public.demo_credit_scores
-      ` as Promise<ScoreRow[]>,
+      `,
       sql`
         select
           id, case_id, creditor_name, balance, issue_type, bureaus, status,
@@ -105,13 +105,19 @@ export async function GET() {
           protection_reason, classification_source, classification_confidence
         from public.demo_credit_accounts
         order by created_at
-      ` as Promise<AccountRow[]>,
+      `,
       sql`
         select id, full_name, role::text as role
         from public.demo_users
         order by full_name
-      ` as Promise<ProfileRow[]>,
-    ]);
+      `,
+    ])) as [
+      CaseRow[],
+      ReportRow[],
+      ScoreRow[],
+      AccountRow[],
+      ProfileRow[],
+    ];
 
     const scoresByReport = new Map<string, { bureau: string; score: number }[]>();
     for (const s of scores) {
